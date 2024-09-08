@@ -1,6 +1,6 @@
 from moviepy.editor import TextClip, CompositeVideoClip
 
-def create_text_video(text, output_file='videos/output.mp4'):
+def create_text_video(text, output_file='output.mp4'):
     width, height = 100, 100
     duration = 3
 

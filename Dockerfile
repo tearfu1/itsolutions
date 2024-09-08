@@ -1,17 +1,16 @@
-FROM python:3.12
+FROM python:3.12-slim
 
 WORKDIR /app
 
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN apt-get update -y \
+    && apt-get install ffmpeg -y \
+    && apt-get install imagemagick -y
+
+RUN > /etc/ImageMagick-6/policy.xml
+
 COPY . .
-RUN pip install -U pip
-RUN pip install moviepy
 
-RUN apt-get update \
-    && apt-get install -qq -y build-essential xvfb xdg-utils wget unzip ffmpeg libpq-dev vim libmagick++-dev fonts-liberation sox bc gsfonts --no-install-recommends\
-    && apt-get clean
-
-## ImageMagicK Installation
-RUN apt install imagemagick
-
-RUN cd itsolutions \
-    && python manage.py runserver
+CMD ["python", "itsolutions/manage.py", "runserver", "0.0.0.0:8000"]
