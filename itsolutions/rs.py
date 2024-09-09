@@ -5,7 +5,6 @@ def create_text_video(text, output_file='output.mp4'):
     duration = 3
 
     text_clip = TextClip(text, fontsize=100, color='white', font='Bookman-Demi')
-    print(TextClip.list('font'))
 
     start_x = width
     end_x = -text_clip.w
